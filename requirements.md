@@ -12,22 +12,22 @@ Pain points:
 
 - Ability to save interesting dishes
 
-# MVP
+# Scope
 
-- Minimun viable product will display gallery of homemade dishes to choose from. Hovering over a dish in the gallery will make the name appear as well as buttons to favorite the dish and view the recipe. Favorited dishes, along with other info, will be recorded on the favorites page and favorites will be persisted across all pages of the website in local storage.
+## In:
 
-- Stretch goals:
+- Show users gallery of tasty dishes
 
-# Domain Model
+- Allow users to view dish recipes, ingredients, and instructions
 
-### Dishes
+- Allow users to curate a selection of favorite dishes in their favorites page
 
-- name
+## Out:
 
-- image source
+- Does not generate gallery based of favorites list
 
-- is it favorited
+- Does not show all dish origin info or locations dishes are served
 
-- way to render
+- Does not use large database of pre-loaded dishes
 
-- way to check if favorited
+# 
