@@ -33,7 +33,4 @@ function initMap() {
   });
 }
 
-// dummy.isFavorite = true;
-
-// console.log(dummy.isFavorite);
-// console.log(dummy.coordinates);
+console.log(dummy.coordinates);
