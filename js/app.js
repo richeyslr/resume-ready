@@ -3,6 +3,17 @@ class Gallery {
     this.imgArray = imgArray;
   }
   // method to render the img gallery w random parks from array of all parks
+  shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * i);
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+  }
+
+  // make a function to render img array
+  render() {}
 }
 
 class Favorites {
