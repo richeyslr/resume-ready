@@ -20,8 +20,9 @@ let imgGallery = [];
 //   new Park("FDR Skatepark", "Philadelphia, PA", "Broad &, Pattison Ave", 40.033628944149996, -75.19025825951357, "./assets/imgs/fdrpark.jpg"),
 //   new Park("Gray's Ferry Crescent Skatepark", "Philadelphia, PA", "3600 Grays Ferry Ave", 39.882047274987315, -75.16950885430737, "./assets/imgs/fdrpark.jpg")
 // ];
-
-const parkGallery = new Gallery(allParks);
+let potentialFavs = JSON.parse(localStorage.getItem("favorites")) || [];
+let potentialGallery = JSON.parse(localStorage.getItem("gallery")) || allParks;
+let parkGallery = new Gallery(potentialGallery, potentialFavs);
 parkGallery.render();
 
 // const favButtons = document.querySelectorAll('button #fav');
@@ -37,6 +38,15 @@ function handleFavClick(evt) {
     let currentParkName = currentPark.querySelector("#name").textContent;
     console.log(currentParkName);
     favoriteParks.addFavorite(currentParkName);
+    evt.target.id = "unfav";
+    evt.target.textContent = "Unfav";
+  } else if (evt.target.id === "unfav") {
+    let currentPark = evt.target.parentElement;
+    let currentParkName = currentPark.querySelector("#name").textContent;
+    console.log(currentParkName);
+    favoriteParks.removeFavorite(currentParkName);
+    evt.target.id = "fav";
+    evt.target.textContent = "Fav";
   }
   // const parkName = "";
   // for (let i = 0; i < allParks.length; i++) {
