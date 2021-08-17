@@ -1,3 +1,5 @@
+const galleryContainer = document.querySelector("#gallery");
+
 class Gallery {
   constructor(imgArray) {
     this.imgArray = imgArray;
@@ -13,7 +15,14 @@ class Gallery {
   }
 
   // make a function to render img array
-  render() {}
+  render() {
+    let currentGallery = this.imgArray;
+    this.shuffle(currentGallery);
+    currentGallery.length = 8;
+    for (let park of currentGallery) {
+      park.makeGalleryPost();
+    }
+  }
 }
 
 class Favorites {
@@ -34,4 +43,19 @@ class Park {
     this.imgSrc = imgSrc;
   }
   isFavorite = false;
+  makeGalleryPost() {
+    let parent = document.createElement("div");
+    parent.style.backgroundImage = `url(${this.imgSrc})`;
+    parent.classList.add("gallery-post");
+    let name = document.createElement("h5");
+    let city = document.createElement("h6");
+    let favButton = document.createElement("button");
+    let mapButton = document.createElement("button");
+    favButton.textContent = "Fav";
+    mapButton.textContent = "Map";
+    name.textContent = this.name;
+    city.textContent = this.location;
+    parent.append(name, city, favButton, mapButton);
+    galleryContainer.append(parent);
+  }
 }

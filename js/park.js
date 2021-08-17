@@ -24,9 +24,8 @@ const allParks = [
   new Park("Gray's Ferry Crescent Skatepark", "Philadelphia, PA", "3600 Grays Ferry Ave", 39.882047274987315, -75.16950885430737, "./assets/imgs/fdrpark.jpg")
 ];
 
-allParks[0].initMap();
-
-
+const parkGallery = new Gallery(allParks);
+parkGallery.render();
 
 // function initMap() {
 //   // The location of Uluru
