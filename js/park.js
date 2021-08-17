@@ -27,6 +27,21 @@ let imgGallery = [];
 const parkGallery = new Gallery(allParks);
 parkGallery.render();
 
+// const favButtons = document.querySelectorAll('button #fav');
+// for (let i = 0; i < favButtons.length; i++) {
+//   const favButton = favButtons[i];
+//   favButton.addEventListener('click', handleFavClick);
+// };
+
+// function handleFavClick(evt) {
+//   const parkName 
+//   for (let i = 0; i < allParks.length; i++) {
+//     if (parkName === allParks[i].name) {
+//       allParks[i].isFavorite = true;
+//       this.favParks.push(allParks[i]);
+//     }
+// }
+
 // function initMap() {
 //   // The location of Uluru
 //   const uluru = dummy.coordinates;
