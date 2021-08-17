@@ -1,7 +1,4 @@
-
-
 let imgGallery = [];
-
 
 // const allParks = [
 //   new Park("Memphis Skatepark", "Memphis, TN", "2599 Avery Ave", 35.1306, -89.9729, "./assets/imgs/fdrpark.jpg"),
@@ -33,26 +30,21 @@ parkGallery.render();
 //   favButton.addEventListener('click', handleFavClick);
 // };
 
-// function handleFavClick(evt) {
-//   const parkName 
-//   for (let i = 0; i < allParks.length; i++) {
-//     if (parkName === allParks[i].name) {
-//       allParks[i].isFavorite = true;
-//       this.favParks.push(allParks[i]);
-//     }
-// }
+function handleFavClick(evt) {
+  console.log(evt.target.id);
+  if (evt.target.id === "fav") {
+    let currentPark = evt.target.parentElement;
+    let currentParkName = currentPark.querySelector("#name").textContent;
+    console.log(currentParkName);
+    favoriteParks.addFavorite(currentParkName);
+  }
+  // const parkName = "";
+  // for (let i = 0; i < allParks.length; i++) {
+  //   if (parkName === allParks[i].name) {
+  //     allParks[i].isFavorite = true;
+  //     this.favParks.push(allParks[i]);
+  //   }
+  // }
+}
 
-// function initMap() {
-//   // The location of Uluru
-//   const uluru = dummy.coordinates;
-//   // The map, centered at Uluru
-//   const map = new google.maps.Map(document.getElementById("map"), {
-//     zoom: 4,
-//     center: uluru,
-//   });
-//   // The marker, positioned at Uluru
-//   const marker = new google.maps.Marker({
-//     position: uluru,
-//     map: map,
-//   });
-// }
+galleryContainer.addEventListener("click", handleFavClick);

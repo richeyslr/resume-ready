@@ -16,7 +16,7 @@ class Gallery {
 
   // make a function to render img array
   render() {
-    let currentGallery = this.imgArray;
+    let currentGallery = [...this.imgArray];
     this.shuffle(currentGallery);
     currentGallery.length = 8;
     // for (let park of currentGallery) {
@@ -31,8 +31,13 @@ class Gallery {
       let favButton = document.createElement("button");
       let mapButton = document.createElement("button");
       name.id = "name";
-      favButton.id = "fav";
-      favButton.textContent = "Fav";
+      if (!currentGallery[i].isFavorite) {
+        favButton.id = "fav";
+        favButton.textContent = "Fav";
+      } else {
+        favButton.id = "unfav";
+        favButton.textContent = "Unfav";
+      }
       mapButton.textContent = "Map";
       name.textContent = currentGallery[i].name;
       city.textContent = currentGallery[i].location;
@@ -54,13 +59,22 @@ class Favorites {
         this.favParks.push(allParks[i]);
       }
     }
+    console.log(this.favParks);
+    this.saveToLocalStorage();
   }
   removeFavorite(parkName) {
     for (let i = 0; i < this.favParks.length; i++) {
       if (this.favParks[i].name === parkName) {
+        
         this.favParks.slice(i, 1);
       }
     }
+    console.log(this.favParks);
+    this.saveToLocalStorage();
+  }
+  saveToLocalStorage() {
+    const parkFavsArr = JSON.stringify(this.favParks);
+    localStorage.setItem("favorites", parkFavsArr);
   }
   // method to remove parks from favorites
   // method to save favorites to storage
@@ -75,21 +89,6 @@ class Park {
     this.imgSrc = imgSrc;
   }
   isFavorite = false;
-  // makeGalleryPost() {
-  //   let parent = document.createElement("div");
-  //   parent.style.backgroundImage = `url(${this.imgSrc})`;
-  //   parent.classList.add("gallery-post");
-  //   let name = document.createElement("h5");
-  //   let city = document.createElement("h6");
-  //   let favButton = document.createElement("button");
-  //   let mapButton = document.createElement("button");
-  //   favButton.textContent = "Fav";
-  //   mapButton.textContent = "Map";
-  //   name.textContent = this.name;
-  //   city.textContent = this.location;
-  //   parent.append(name, city, favButton, mapButton);
-  //   galleryContainer.append(parent);
-  // }
 }
 
 const allParks = [
@@ -238,3 +237,7 @@ const allParks = [
     "./assets/imgs/GraysFerryCrescentSP-1.jpg"
   ),
 ];
+
+let favoriteParks;
+let favsArr = JSON.parse(localStorage.getItem("favorites")) || [];
+favoriteParks = new Favorites(favsArr);
