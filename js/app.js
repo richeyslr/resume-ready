@@ -3,7 +3,6 @@ class Gallery {
     this.imgArray = imgArray;
   }
   // method to render the img gallery w random parks from array of all parks
-  
 }
 
 class Favorites {
@@ -13,7 +12,6 @@ class Favorites {
   // method to add parks to favorites
   // method to remove parks from favorites
   // method to save favorites to storage
-
 }
 
 class Park {
@@ -25,5 +23,4 @@ class Park {
     this.imgSrc = imgSrc;
   }
   isFavorite = false;
-  
 }
