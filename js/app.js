@@ -261,4 +261,52 @@ const allParks = [
     -75.16950885430737,
     "./assets/imgs/GraysFerryCrescentSP-1.jpg"
   ),
+  new Park(
+    "Forest Grove Skatepark",
+    "Forest Grove, OR",
+    "2725 Main St",
+    45.52880112060759,
+    -123.11150210206321,
+    "./assets/imgs/ForestGroveSP-1.jpg"
+  ),
+  new Park(
+    "Burnside Skatepark",
+    "Portland, OR",
+    "SE 2nd Ave",
+    45.52325170027452,
+    -122.66374460391074,
+    "./assets/imgs/BurnsideSP-1.jpg"
+  ),
+  new Park(
+    "Denver Skatepark",
+    "Denver, CO",
+    "2205 19th St",
+    39.759780231777135,
+    -105.00286499056854,
+    "./assets/imgs/DenverSP-1.jpg"
+  ),
+  new Park(
+    "Vans Skatepark",
+    "Huntington Beach, CA",
+    "7471 Center Ave",
+    33.743026870482595,
+    -117.9987036274477,
+    "./assets/imgs/VansSP-1.jpg"
+  ),
+  new Park(
+    "Les Coleman Skatepark",
+    "New York, NY",
+    "62 Monroe St & Pike St",
+    40.711611534160774,
+    -73.99261905985696,
+    "./assets/imgs/LesColemanSP-1.jpg"
+  ),
+  new Park(
+    "Skatepark of Tampa",
+    "Tampa, FL",
+    "4215 E Columbus Dr",
+    27.966329929941804,
+    -82.4104119295115,
+    "./assets/imgs/SPofTampa-1.jpg"
+  ),
 ];
