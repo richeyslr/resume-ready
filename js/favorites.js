@@ -3,7 +3,7 @@ let potentialGallery = JSON.parse(localStorage.getItem("gallery")) || allParks;
 let parkGallery = new Gallery(potentialGallery, potentialFavs);
 parkGallery.renderFavorites();
 
-const locations = parkGallery.favorites.map((item) => item.coordinates);
+let locations = parkGallery.favorites.map((item) => item.coordinates);
 // console.log(testmap);
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -38,7 +38,9 @@ function handleUnFavClick(evt) {
     evt.target.id = "fav";
     evt.target.textContent = "Fav";
   }
-
+  // document.getElementById("map").innerHTML = "";
+  locations = parkGallery.favorites.map((item) => item.coordinates);
+  initMap();
   parkGallery.renderFavorites();
 }
 
