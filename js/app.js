@@ -1,4 +1,5 @@
 const galleryContainer = document.querySelector("#gallery");
+const favsList = document.querySelector("#favs-list");
 
 class Gallery {
   constructor(imgArray, favorites) {
@@ -49,6 +50,27 @@ class Gallery {
       city.textContent = currentGallery[i].location;
       parent.append(name, city, favButton, mapButton);
       galleryContainer.append(parent);
+    }
+  }
+  renderFavorites() {
+    for (let i = 0; i < this.favorites.length; i++) {
+      let parent = document.createElement("div");
+      let imgelement = document.createElement("img");
+      imgelement.src = this.favorites[i].imgSrc;
+      parent.classList.add("favorites-post");
+      let name = document.createElement("h5");
+      let city = document.createElement("h6");
+      let favButton = document.createElement("button");
+      let mapButton = document.createElement("button");
+      name.id = "name";
+      favButton.id = "unfav";
+      favButton.textContent = "Unfav";
+      
+      mapButton.textContent = "Map";
+      name.textContent = this.favorites[i].name;
+      city.textContent = this.favorites[i].location;
+      parent.append(imgelement, name, city, favButton, mapButton);
+      favsList.append(parent);
     }
   }
   addFavorite(parkName) {
