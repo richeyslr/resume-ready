@@ -42,7 +42,7 @@ class Gallery {
       let favButton = document.createElement("button");
       let mapButton = document.createElement("button");
       console.log(currentGallery[i].vidID);
-      mapButton.classList.add("js-modal-button");
+      mapButton.classList.add("js-modal-btn");
       mapButton.setAttribute("data-video-id", currentGallery[i].vidID);
       name.id = "name";
       if (!currentGallery[i].isFavorite) {
@@ -60,6 +60,8 @@ class Gallery {
       parent.append(overlay, details);
       galleryContainer.append(parent);
     }
+
+    // $(".js-modal-btn").modalVideo();
   }
   renderFavorites() {
     favsList.innerHTML = "";
