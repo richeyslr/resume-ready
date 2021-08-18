@@ -74,11 +74,13 @@ class Gallery {
       let city = document.createElement("h6");
       let favButton = document.createElement("button");
       let mapButton = document.createElement("button");
+      mapButton.classList.add("js-modal-btn");
+      mapButton.setAttribute("data-video-id", this.favorites[i].vidID);
       name.id = "name";
       favButton.id = "unfav";
       favButton.textContent = "Unfav";
 
-      mapButton.textContent = "Map";
+      mapButton.textContent = "Watch Video";
       name.textContent = this.favorites[i].name;
       city.textContent = this.favorites[i].location;
       parent.append(imgelement, name, city, favButton, mapButton);

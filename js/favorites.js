@@ -59,3 +59,4 @@ function handleUnFavClick(evt) {
 // };
 
 favsList.addEventListener("click", handleUnFavClick);
+$(".js-modal-btn").modalVideo();
