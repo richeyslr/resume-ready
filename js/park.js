@@ -58,4 +58,7 @@ function handleFavClick(evt) {
   // }
 }
 
+$(".js-modal-btn").modalVideo();
+// console.log($(".js-yt"));
+
 galleryContainer.addEventListener("click", handleFavClick);
