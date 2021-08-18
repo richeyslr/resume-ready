@@ -1,8 +1,9 @@
 const galleryContainer = document.querySelector("#gallery");
 
 class Gallery {
-  constructor(imgArray) {
+  constructor(imgArray, favorites) {
     this.imgArray = imgArray;
+    this.favorites = favorites;
   }
   // method to render the img gallery w random parks from array of all parks
   shuffle(array) {
@@ -13,7 +14,10 @@ class Gallery {
       array[j] = temp;
     }
   }
-
+  saveToLocalStorage() {
+    const galleryArr = JSON.stringify(this.imgArray);
+    localStorage.setItem("gallery", galleryArr);
+  }
   // make a function to render img array
   render() {
     let currentGallery = [...this.imgArray];
@@ -53,22 +57,29 @@ class Favorites {
   }
   // method to add parks to favorites
   addFavorite(parkName) {
-    for (let i = 0; i < allParks.length; i++) {
-      if (allParks[i].name === parkName) {
-        allParks[i].isFavorite = true;
-        this.favParks.push(allParks[i]);
+    for (let i = 0; i < parkGallery.imgArray.length; i++) {
+      if (parkGallery.imgArray[i].name === parkName) {
+        parkGallery.imgArray[i].isFavorite = true;
+        this.favParks.push(parkGallery.imgArray[i]);
       }
     }
+    // parkGallery.imgArray = allParks;
+    parkGallery.saveToLocalStorage();
     console.log(this.favParks);
     this.saveToLocalStorage();
   }
   removeFavorite(parkName) {
     for (let i = 0; i < this.favParks.length; i++) {
       if (this.favParks[i].name === parkName) {
-        
-        this.favParks.slice(i, 1);
+        this.favParks.splice(i, 1);
       }
     }
+    for (let i = 0; i < parkGallery.imgArray.length; i++) {
+      if (parkGallery.imgArray[i].name === parkName) {
+        parkGallery.imgArray[i].isFavorite = false;
+      }
+    }
+    parkGallery.saveToLocalStorage();
     console.log(this.favParks);
     this.saveToLocalStorage();
   }
