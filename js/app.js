@@ -17,6 +17,8 @@ class Gallery {
   saveToLocalStorage() {
     const galleryArr = JSON.stringify(this.imgArray);
     localStorage.setItem("gallery", galleryArr);
+    const parkFavsArr = JSON.stringify(this.favorites);
+    localStorage.setItem("favorites", parkFavsArr);
   }
   // make a function to render img array
   render() {
@@ -49,46 +51,31 @@ class Gallery {
       galleryContainer.append(parent);
     }
   }
-}
-
-class Favorites {
-  constructor(favParks) {
-    this.favParks = favParks;
-  }
-  // method to add parks to favorites
   addFavorite(parkName) {
-    for (let i = 0; i < parkGallery.imgArray.length; i++) {
-      if (parkGallery.imgArray[i].name === parkName) {
-        parkGallery.imgArray[i].isFavorite = true;
-        this.favParks.push(parkGallery.imgArray[i]);
+    for (let i = 0; i < this.imgArray.length; i++) {
+      if (this.imgArray[i].name === parkName) {
+        this.imgArray[i].isFavorite = true;
+        this.favorites.push(this.imgArray[i]);
       }
     }
     // parkGallery.imgArray = allParks;
-    parkGallery.saveToLocalStorage();
-    console.log(this.favParks);
     this.saveToLocalStorage();
   }
   removeFavorite(parkName) {
-    for (let i = 0; i < this.favParks.length; i++) {
-      if (this.favParks[i].name === parkName) {
-        this.favParks.splice(i, 1);
+    for (let i = 0; i < this.favorites.length; i++) {
+      if (this.favorites[i].name === parkName) {
+        this.favorites.splice(i, 1);
       }
     }
-    for (let i = 0; i < parkGallery.imgArray.length; i++) {
-      if (parkGallery.imgArray[i].name === parkName) {
-        parkGallery.imgArray[i].isFavorite = false;
+    for (let i = 0; i < this.imgArray.length; i++) {
+      if (this.imgArray[i].name === parkName) {
+        this.imgArray[i].isFavorite = false;
       }
     }
-    parkGallery.saveToLocalStorage();
-    console.log(this.favParks);
     this.saveToLocalStorage();
   }
-  saveToLocalStorage() {
-    const parkFavsArr = JSON.stringify(this.favParks);
-    localStorage.setItem("favorites", parkFavsArr);
-  }
-  // method to remove parks from favorites
-  // method to save favorites to storage
+
+
 }
 
 class Park {
@@ -249,6 +236,3 @@ const allParks = [
   ),
 ];
 
-let favoriteParks;
-let favsArr = JSON.parse(localStorage.getItem("favorites")) || [];
-favoriteParks = new Favorites(favsArr);

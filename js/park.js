@@ -37,14 +37,14 @@ function handleFavClick(evt) {
     let currentPark = evt.target.parentElement;
     let currentParkName = currentPark.querySelector("#name").textContent;
     console.log(currentParkName);
-    favoriteParks.addFavorite(currentParkName);
+    parkGallery.addFavorite(currentParkName);
     evt.target.id = "unfav";
     evt.target.textContent = "Unfav";
   } else if (evt.target.id === "unfav") {
     let currentPark = evt.target.parentElement;
     let currentParkName = currentPark.querySelector("#name").textContent;
     console.log(currentParkName);
-    favoriteParks.removeFavorite(currentParkName);
+    parkGallery.removeFavorite(currentParkName);
     evt.target.id = "fav";
     evt.target.textContent = "Fav";
   }
