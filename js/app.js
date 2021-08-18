@@ -59,6 +59,7 @@ class Gallery {
     }
   }
   renderFavorites() {
+    favsList.innerHTML = "";
     for (let i = 0; i < this.favorites.length; i++) {
       let parent = document.createElement("div");
       let imgelement = document.createElement("img");
