@@ -1,12 +1,14 @@
+// get global references to containers
 const galleryContainer = document.querySelector("#gallery");
 const favsList = document.querySelector("#favs-list");
 
+// create an object for the gallery of parks that takes 2 arrays, one to hold the array of all parks and one to hold array of favorite parks
 class Gallery {
   constructor(imgArray, favorites) {
     this.imgArray = imgArray;
     this.favorites = favorites;
   }
-  // method to render the img gallery w random parks from array of all parks
+  // method to shuffle array of all parks to randomize their position in the array
   shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * i);
@@ -15,20 +17,24 @@ class Gallery {
       array[j] = temp;
     }
   }
+  // method to save both the imgArray and the favorites array to local storage
   saveToLocalStorage() {
+    // stringify the array contents and set it in local storage
     const galleryArr = JSON.stringify(this.imgArray);
     localStorage.setItem("gallery", galleryArr);
     const parkFavsArr = JSON.stringify(this.favorites);
     localStorage.setItem("favorites", parkFavsArr);
   }
-  // make a function to render img array
+  // make a function to render img array to the gallery page with 8 images
   render() {
+    // get a reference to the entire array of parks
     let currentGallery = [...this.imgArray];
+    // shuffle the array of all parks
     this.shuffle(currentGallery);
+    // change the length of the current parks being shown to 8
     currentGallery.length = 8;
-    // for (let park of currentGallery) {
-    //   park.makeGalleryPost();
-    // }
+
+    // for each park in the array create a div with a background image from the imgSrc of the park
     for (let i = 0; i < currentGallery.length; i++) {
       let parent = document.createElement("div");
       parent.style.backgroundImage = `url(${currentGallery[i].imgSrc})`;
@@ -39,6 +45,7 @@ class Gallery {
       details.classList.add("content-details");
       let name = document.createElement("h5");
       let city = document.createElement("h6");
+      // add buttons to each park for favoriting and watching a video of the park
       let favButton = document.createElement("button");
       let mapButton = document.createElement("button");
       console.log(currentGallery[i].vidID);
@@ -60,11 +67,11 @@ class Gallery {
       parent.append(overlay, details);
       galleryContainer.append(parent);
     }
-
-    // $(".js-modal-btn").modalVideo();
   }
   renderFavorites() {
+    // clear the current favsList div
     favsList.innerHTML = "";
+    // for each park in the favorites list add it to the favs-list container
     for (let i = 0; i < this.favorites.length; i++) {
       let parent = document.createElement("div");
       let imgelement = document.createElement("img");
@@ -87,31 +94,39 @@ class Gallery {
       favsList.append(parent);
     }
   }
+  // method to add parks to favorites list
   addFavorite(parkName) {
+    // get the park name and loop through the array of all parks to find a matching park name
     for (let i = 0; i < this.imgArray.length; i++) {
       if (this.imgArray[i].name === parkName) {
+        // change the park's isFavorite property
         this.imgArray[i].isFavorite = true;
+        // push the park into the favorites array
         this.favorites.push(this.imgArray[i]);
       }
     }
-    // parkGallery.imgArray = allParks;
+    // update local storage
     this.saveToLocalStorage();
   }
+  // method to remove parks from favorites array
   removeFavorite(parkName) {
+    // check for the name in the favorites array and splice it
     for (let i = 0; i < this.favorites.length; i++) {
       if (this.favorites[i].name === parkName) {
         this.favorites.splice(i, 1);
       }
     }
+    // check for the name in the array of all parks and change its isFavorite property back to false
     for (let i = 0; i < this.imgArray.length; i++) {
       if (this.imgArray[i].name === parkName) {
         this.imgArray[i].isFavorite = false;
       }
     }
+    // update local storage
     this.saveToLocalStorage();
   }
 }
-
+// make a class for an instance of a skatepark with all neccessary parameters
 class Park {
   constructor(name, location, street, latitude, longitude, imgSrc, vidID) {
     this.name = name;
@@ -124,6 +139,7 @@ class Park {
   isFavorite = false;
 }
 
+// array of all parks where park instances are created
 const allParks = [
   new Park(
     "Memphis Skatepark",
