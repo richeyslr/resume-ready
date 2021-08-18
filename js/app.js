@@ -33,6 +33,10 @@ class Gallery {
       let parent = document.createElement("div");
       parent.style.backgroundImage = `url(${currentGallery[i].imgSrc})`;
       parent.classList.add("gallery-post");
+      let overlay = document.createElement("div");
+      overlay.classList.add("content-overlay");
+      let details = document.createElement("div");
+      details.classList.add("content-details");
       let name = document.createElement("h5");
       let city = document.createElement("h6");
       let favButton = document.createElement("button");
@@ -48,7 +52,9 @@ class Gallery {
       mapButton.textContent = "Map";
       name.textContent = currentGallery[i].name;
       city.textContent = currentGallery[i].location;
-      parent.append(name, city, favButton, mapButton);
+      details.append(name, city, favButton, mapButton);
+      // parent.append(overlay, name, city, favButton, mapButton);
+      parent.append(overlay, details);
       galleryContainer.append(parent);
     }
   }
@@ -65,7 +71,7 @@ class Gallery {
       name.id = "name";
       favButton.id = "unfav";
       favButton.textContent = "Unfav";
-      
+
       mapButton.textContent = "Map";
       name.textContent = this.favorites[i].name;
       city.textContent = this.favorites[i].location;
@@ -96,8 +102,6 @@ class Gallery {
     }
     this.saveToLocalStorage();
   }
-
-
 }
 
 class Park {
@@ -257,4 +261,3 @@ const allParks = [
     "./assets/imgs/GraysFerryCrescentSP-1.jpg"
   ),
 ];
-

@@ -4,6 +4,7 @@
   font-weight: 400;
   src: url("../assets/fonts/karla-v15-latin-regular.woff2") format("woff2");
 }
+
 @font-face {
   font-family: "Karla";
   font-style: normal;
@@ -11,8 +12,16 @@
   src: url("../assets/fonts/karla-v15-latin-600.woff2") format("woff2");
 }
 
+.flavor-light {
+  --color: #fff;
+  --logo-fill: #000;
+}
+
 body {
   font-family: Karla;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 header {
@@ -23,7 +32,14 @@ header {
   height: 75px;
   background-color: #418fbf;
   color: white;
-  margin-bottom: 75px;
+  margin-bottom: 100px;
+}
+
+svg {
+  height: 50px;
+  width: 50px;
+  fill: var(--logo-fill);
+  margin-right: 15px;
 }
 
 .nav {
@@ -31,6 +47,17 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.home {
+  display: flex;
+  align-items: center;
+}
+
+.home,
+.favs {
+  text-decoration: none;
+  color: var(--color);
 }
 /* Set the size of the div element that contains the map */
 #map {
@@ -40,6 +67,20 @@ header {
   /* The width is the width of the web page */
 }
 .gallery {
+  width: 95%;
+  display: grid;
+  --min: 350px;
+  --gap: 2rem;
+  grid-gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));
+  /* grid-template-columns: repeat(4, 1fr); */
+  /* grid-template-rows: repeat(2, 1fr); */
+  /* grid-column-gap: 8px; */
+  /* grid-row-gap: 75px; */
+  align-items: center;
+  justify-items: center;
+}
+/* .gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -47,15 +88,63 @@ header {
   grid-row-gap: 75px;
   align-items: center;
   justify-items: center;
-}
+} */
 .gallery-post {
+  position: relative;
   width: 300px;
   height: 300px;
   background-position: center;
   background-size: cover;
   color: white;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
   /* background-color: red; */
 }
+
+.gallery-post .content-overlay {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  /* left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0; */
+  inset: 0;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  -moz-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+
+.gallery-post:hover .content-overlay {
+  opacity: 1;
+}
+
+.content-details {
+  position: absolute;
+  /* text-align: center; */
+  padding-left: 1em;
+  padding-right: 1em;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  -moz-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.gallery-post:hover .content-details {
+  /* top: 50%;
+  left: 50%; */
+  opacity: 1;
+}
+
 .map {
   height: 400px;
   /* The height is 400 pixels */

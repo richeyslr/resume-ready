@@ -32,6 +32,7 @@ parkGallery.render();
 // };
 
 function handleFavClick(evt) {
+  evt.preventDefault();
   console.log(evt.target.id);
   if (evt.target.id === "fav") {
     let currentPark = evt.target.parentElement;
