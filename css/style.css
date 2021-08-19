@@ -17,6 +17,11 @@
   --logo-fill: #000;
 }
 
+.flavor-dark {
+  --color: red;
+  --logo-fill: red;
+}
+
 body {
   font-family: Karla;
   display: flex;

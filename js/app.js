@@ -47,10 +47,13 @@ class Gallery {
       let city = document.createElement("h6");
       // add buttons to each park for favoriting and watching a video of the park
       let favButton = document.createElement("button");
-      let mapButton = document.createElement("button");
+      let vidButton = document.createElement("button");
+      let vidIcon = document.createElement("i");
       console.log(currentGallery[i].vidID);
-      mapButton.classList.add("js-modal-btn");
-      mapButton.setAttribute("data-video-id", currentGallery[i].vidID);
+      vidButton.classList.add("js-modal-btn");
+      vidButton.setAttribute("data-video-id", currentGallery[i].vidID);
+      vidButton.setAttribute("aria-label", "View park on YouTube");
+      vidIcon.classList.add("fas", "fa-video");
       name.id = "name";
       if (!currentGallery[i].isFavorite) {
         favButton.id = "fav";
@@ -59,10 +62,11 @@ class Gallery {
         favButton.id = "unfav";
         favButton.textContent = "Unfav";
       }
-      mapButton.textContent = "Watch Video";
+      // mapButton.textContent = "Watch Video";
       name.textContent = currentGallery[i].name;
       city.textContent = currentGallery[i].location;
-      details.append(name, city, favButton, mapButton);
+      vidButton.append(vidIcon);
+      details.append(name, city, favButton, vidButton);
       // parent.append(overlay, name, city, favButton, mapButton);
       parent.append(overlay, details);
       galleryContainer.append(parent);
@@ -358,3 +362,23 @@ const allParks = [
     "PlGRE5HMQgo"
   ),
 ];
+
+// setting up theme switcher
+
+const themeToggle = document.querySelector("#theme-toggle");
+
+const enableDarkMode = () => {
+  document.body.classList.remove("flavor-light");
+  document.body.classList.add("flavor-dark");
+};
+
+const enableLightMode = () => {
+  document.body.classList.remove("flavor-dark");
+  document.body.classList.add("flavor-light");
+};
+
+themeToggle.addEventListener("click", () => {
+  document.body.classList.contains("flavor-light")
+    ? enableDarkMode()
+    : enableLightMode();
+});
