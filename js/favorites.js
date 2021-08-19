@@ -11,7 +11,7 @@ parkGallery.renderFavorites();
 
 // set the lat and long of the parks to "locations" used by google maps
 let locations = parkGallery.favorites.map((item) => item.coordinates);
-
+let infoContent = parkGallery.favorites.map((park) => park.name);
 // google maps api function to render a map on screen
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -28,13 +28,33 @@ function initMap() {
     return new google.maps.Marker({
       position: location,
       label: labels[i % labels.length],
+      map,
     });
   });
   // Add a marker clusterer to manage the markers.
   new MarkerClusterer(map, markers, {
     imagePath: "./assets/markers/m",
   });
+  for (let i = 0; i < markers.length; i++) {
+    markers[i].addListener("click", () => {
+      map.setZoom(10);
+      map.setCenter(markers[i].getPosition());
+    });
+  }
+  for (let i = 0; i < markers.length; i++) {
+    markers[i].addListener("mouseover", () => {
+      const infoWindow = new google.maps.InfoWindow({
+        content: infoContent[i],
+        map: map,
+      });
+      infoWindow.open(map, markers[i]);
+      markers[i].addListener("mouseout", () => {
+        infoWindow.close(map, markers[i]);
+      });
+    });
+  }
 }
+
 // make a function to handle an unfavorite click on the favorites screen
 function handleUnFavClick(evt) {
   // same as other event handler but only for unfavoriting
