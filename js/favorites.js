@@ -11,7 +11,20 @@ parkGallery.renderFavorites();
 
 // set the lat and long of the parks to "locations" used by google maps
 let locations = parkGallery.favorites.map((item) => item.coordinates);
-let infoContent = parkGallery.favorites.map((park) => park.name);
+// let infoContent = parkGallery.favorites.map((park) => park.name);
+let infoContent = parkGallery.favorites.map(
+  (park) => `<div>
+<img src="${park.imgSrc}"/>
+<h3>${park.name}</h3>
+<h4>${park.location}</h4>
+</div>`
+);
+
+let parkLabels = parkGallery.favorites
+  .map((item) => item.name.charAt(0))
+  .join("");
+// console.log(labels);
+
 // google maps api function to render a map on screen
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -19,7 +32,7 @@ function initMap() {
     center: { lat: 39.83, lng: -95.58 },
   });
   // Create an array of alphabetical characters used to label the markers.
-  const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const labels = parkLabels;
   // Add some markers to the map.
   // Note: The code uses the JavaScript Array.prototype.map() method to
   // create an array of markers based on a given "locations" array.
@@ -57,21 +70,28 @@ function initMap() {
 
 // make a function to handle an unfavorite click on the favorites screen
 function handleUnFavClick(evt) {
+  evt.preventDefault();
+  evt.stopPropagation();
   // same as other event handler but only for unfavoriting
   if (evt.target.id === "unfav") {
+    // let currentIcon = evt.target.querySelector("i");
     let currentPark = evt.target.parentElement;
     let currentParkName = currentPark.querySelector("#name").textContent;
     console.log(currentParkName);
     parkGallery.removeFavorite(currentParkName);
     evt.target.id = "fav";
-    evt.target.textContent = "Fav";
+
+    // evt.target.textContent = "Fav";
+    // also update the locations based off the new arrays
+    locations = parkGallery.favorites.map((item) => item.coordinates);
+    parkLabels = parkGallery.favorites
+      .map((item) => item.name.charAt(0))
+      .join("");
+    // remake the map on the page with updated locations
+    initMap();
+    // re render the favorites on the page
+    parkGallery.renderFavorites();
   }
-  // also update the locations based off the new arrays
-  locations = parkGallery.favorites.map((item) => item.coordinates);
-  // remake the map on the page with updated locations
-  initMap();
-  // re render the favorites on the page
-  parkGallery.renderFavorites();
 }
 
 // add an event listener to the favsList container for clicking unfav
