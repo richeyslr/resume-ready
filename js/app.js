@@ -376,11 +376,13 @@ const themeToggle = document.querySelector("#theme-toggle");
 const enableDarkMode = () => {
   document.body.classList.remove("flavor-light");
   document.body.classList.add("flavor-dark");
+  localStorage.setItem('currentTheme', 'dark')
 };
 
 const enableLightMode = () => {
   document.body.classList.remove("flavor-dark");
   document.body.classList.add("flavor-light");
+  localStorage.setItem('currentTheme', 'light')
 };
 
 themeToggle.addEventListener("click", () => {

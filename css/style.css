@@ -14,11 +14,13 @@
 
 .flavor-light {
   --color: #fff;
+  --headerBg: #418fbf;
   --logo-fill: #000;
 }
 
 .flavor-dark {
   --color: red;
+  --headerBg: #111;
   --logo-fill: red;
 }
 
@@ -35,7 +37,7 @@ header {
   justify-content: center;
   width: 100%;
   height: 75px;
-  background-color: #418fbf;
+  background-color: var(--headerBg);
   color: white;
   margin-bottom: 100px;
 }

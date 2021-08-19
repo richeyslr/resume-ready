@@ -1,3 +1,6 @@
+localStorage.getItem("currentTheme") === "dark"
+  ? enableDarkMode()
+  : enableLightMode();
 // either get favorites and all parks from local storage or set them to default
 let potentialFavs = JSON.parse(localStorage.getItem("favorites")) || [];
 let potentialGallery = JSON.parse(localStorage.getItem("gallery")) || allParks;
