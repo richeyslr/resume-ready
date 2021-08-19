@@ -11,6 +11,10 @@ parkGallery.renderFavorites();
 
 // set the lat and long of the parks to "locations" used by google maps
 let locations = parkGallery.favorites.map((item) => item.coordinates);
+let parkLabels = parkGallery.favorites
+  .map((item) => item.name.charAt(0))
+  .join("");
+// console.log(labels);
 
 // google maps api function to render a map on screen
 function initMap() {
@@ -19,7 +23,7 @@ function initMap() {
     center: { lat: 39.83, lng: -95.58 },
   });
   // Create an array of alphabetical characters used to label the markers.
-  const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const labels = parkLabels;
   // Add some markers to the map.
   // Note: The code uses the JavaScript Array.prototype.map() method to
   // create an array of markers based on a given "locations" array.
@@ -51,6 +55,9 @@ function handleUnFavClick(evt) {
     // evt.target.textContent = "Fav";
     // also update the locations based off the new arrays
     locations = parkGallery.favorites.map((item) => item.coordinates);
+    parkLabels = parkGallery.favorites
+      .map((item) => item.name.charAt(0))
+      .join("");
     // remake the map on the page with updated locations
     initMap();
     // re render the favorites on the page
