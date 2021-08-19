@@ -48,24 +48,30 @@ class Gallery {
       // add buttons to each park for favoriting and watching a video of the park
       let favButton = document.createElement("button");
       let vidButton = document.createElement("button");
+      let favIcon = document.createElement("i");
       let vidIcon = document.createElement("i");
-      console.log(currentGallery[i].vidID);
+      // console.log(currentGallery[i].vidID);
       vidButton.classList.add("js-modal-btn");
       vidButton.setAttribute("data-video-id", currentGallery[i].vidID);
       vidButton.setAttribute("aria-label", "View park on YouTube");
       vidIcon.classList.add("fas", "fa-video");
+      favButton.setAttribute("aria-label", "Fav/Unfav");
       name.id = "name";
+      favIcon.classList.add("fa-heart");
       if (!currentGallery[i].isFavorite) {
         favButton.id = "fav";
-        favButton.textContent = "Fav";
+        favIcon.classList.add("far");
+        // favButton.textContent = "Fav";
       } else {
         favButton.id = "unfav";
-        favButton.textContent = "Unfav";
+        favIcon.classList.add("fas");
+        // favButton.textContent = "Unfav";
       }
       // mapButton.textContent = "Watch Video";
       name.textContent = currentGallery[i].name;
       city.textContent = currentGallery[i].location;
       vidButton.append(vidIcon);
+      favButton.append(favIcon);
       details.append(name, city, favButton, vidButton);
       // parent.append(overlay, name, city, favButton, mapButton);
       parent.append(overlay, details);
