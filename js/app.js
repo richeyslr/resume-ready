@@ -85,6 +85,10 @@ class Gallery {
     for (let i = 0; i < this.favorites.length; i++) {
       let parent = document.createElement("div");
       let details = document.createElement("div");
+      let imgDetailsWrapper = document.createElement("div");
+      let buttonWrapper = document.createElement("div");
+      imgDetailsWrapper.classList.add("favs-wrap");
+      buttonWrapper.classList.add("favs-wrap");
       details.classList.add("favs-details");
       let imgElement = document.createElement("img");
       imgElement.classList.add("favs-img");
@@ -96,7 +100,7 @@ class Gallery {
       let favIcon = document.createElement("i");
       let vidButton = document.createElement("button");
       let vidIcon = document.createElement("i");
-      vidIcon.classList.add("fas", "fa-video");
+      vidIcon.classList.add("fas", "fa-video", "favs-vid");
       vidButton.classList.add("js-modal-btn");
       vidButton.setAttribute("data-video-id", this.favorites[i].vidID);
       name.id = "name";
@@ -108,11 +112,14 @@ class Gallery {
       favButton.append(favIcon);
       vidButton.append(vidIcon);
       name.textContent = this.favorites[i].name;
+      name.classList.add("favs-name");
       city.textContent = this.favorites[i].location;
       city.classList.add("favs-city");
       // parent.append(imgElement, name, city, favButton, mapButton);
       details.append(name, city);
-      parent.append(imgElement, details, favButton, vidButton);
+      imgDetailsWrapper.append(imgElement, details);
+      buttonWrapper.append(favButton, vidButton);
+      parent.append(imgDetailsWrapper, buttonWrapper);
       favsList.append(parent);
     }
   }

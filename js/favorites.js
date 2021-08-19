@@ -13,10 +13,12 @@ parkGallery.renderFavorites();
 let locations = parkGallery.favorites.map((item) => item.coordinates);
 // let infoContent = parkGallery.favorites.map((park) => park.name);
 let infoContent = parkGallery.favorites.map(
-  (park) => `<div>
-<img src="${park.imgSrc}"/>
-<h3>${park.name}</h3>
-<h4>${park.location}</h4>
+  (park) => `<div class="map-container">
+<img src="${park.imgSrc}" class="map-img"/>
+<div class="map-details">
+<span><strong>${park.name}</strong></span>
+<span class="map-city">${park.location}</span>
+</div>
 </div>`
 );
 
