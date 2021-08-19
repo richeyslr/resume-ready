@@ -42,3 +42,5 @@ $(".js-modal-btn").modalVideo();
 
 // add an event listener to the gallery container
 galleryContainer.addEventListener("click", handleFavClick);
+
+
