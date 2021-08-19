@@ -84,23 +84,35 @@ class Gallery {
     // for each park in the favorites list add it to the favs-list container
     for (let i = 0; i < this.favorites.length; i++) {
       let parent = document.createElement("div");
-      let imgelement = document.createElement("img");
-      imgelement.src = this.favorites[i].imgSrc;
-      parent.classList.add("favorites-post");
-      let name = document.createElement("h5");
-      let city = document.createElement("h6");
+      let details = document.createElement("div");
+      details.classList.add("favs-details");
+      let imgElement = document.createElement("img");
+      imgElement.classList.add("favs-img");
+      imgElement.src = this.favorites[i].imgSrc;
+      parent.classList.add("favs-post");
+      let name = document.createElement("span");
+      let city = document.createElement("span");
       let favButton = document.createElement("button");
-      let mapButton = document.createElement("button");
-      mapButton.classList.add("js-modal-btn");
-      mapButton.setAttribute("data-video-id", this.favorites[i].vidID);
+      let favIcon = document.createElement("i");
+      let vidButton = document.createElement("button");
+      let vidIcon = document.createElement("i");
+      vidIcon.classList.add("fas", "fa-video");
+      vidButton.classList.add("js-modal-btn");
+      vidButton.setAttribute("data-video-id", this.favorites[i].vidID);
       name.id = "name";
       favButton.id = "unfav";
-      favButton.textContent = "Unfav";
+      favIcon.classList.add("fas", "fa-heart");
+      // favButton.textContent = "Unfav";
 
-      mapButton.textContent = "Watch Video";
+      // vidButton.textContent = "Watch Video";
+      favButton.append(favIcon);
+      vidButton.append(vidIcon);
       name.textContent = this.favorites[i].name;
       city.textContent = this.favorites[i].location;
-      parent.append(imgelement, name, city, favButton, mapButton);
+      city.classList.add("favs-city");
+      // parent.append(imgElement, name, city, favButton, mapButton);
+      details.append(name, city);
+      parent.append(imgElement, details, favButton, vidButton);
       favsList.append(parent);
     }
   }
@@ -376,13 +388,13 @@ const themeToggle = document.querySelector("#theme-toggle");
 const enableDarkMode = () => {
   document.body.classList.remove("flavor-light");
   document.body.classList.add("flavor-dark");
-  localStorage.setItem('currentTheme', 'dark')
+  localStorage.setItem("currentTheme", "dark");
 };
 
 const enableLightMode = () => {
   document.body.classList.remove("flavor-dark");
   document.body.classList.add("flavor-light");
-  localStorage.setItem('currentTheme', 'light')
+  localStorage.setItem("currentTheme", "light");
 };
 
 themeToggle.addEventListener("click", () => {

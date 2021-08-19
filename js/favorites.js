@@ -37,21 +37,25 @@ function initMap() {
 }
 // make a function to handle an unfavorite click on the favorites screen
 function handleUnFavClick(evt) {
+  evt.preventDefault();
+  evt.stopPropagation();
   // same as other event handler but only for unfavoriting
   if (evt.target.id === "unfav") {
+    // let currentIcon = evt.target.querySelector("i");
     let currentPark = evt.target.parentElement;
     let currentParkName = currentPark.querySelector("#name").textContent;
     console.log(currentParkName);
     parkGallery.removeFavorite(currentParkName);
     evt.target.id = "fav";
-    evt.target.textContent = "Fav";
+
+    // evt.target.textContent = "Fav";
+    // also update the locations based off the new arrays
+    locations = parkGallery.favorites.map((item) => item.coordinates);
+    // remake the map on the page with updated locations
+    initMap();
+    // re render the favorites on the page
+    parkGallery.renderFavorites();
   }
-  // also update the locations based off the new arrays
-  locations = parkGallery.favorites.map((item) => item.coordinates);
-  // remake the map on the page with updated locations
-  initMap();
-  // re render the favorites on the page
-  parkGallery.renderFavorites();
 }
 
 // add an event listener to the favsList container for clicking unfav

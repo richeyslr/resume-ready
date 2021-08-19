@@ -16,12 +16,16 @@
   --color: #fff;
   --headerBg: #418fbf;
   --logo-fill: #000;
+  --switcherClr: #000;
+  --bodyBG: #fff;
 }
 
 .flavor-dark {
-  --color: red;
+  --color: #fff;
   --headerBg: #111;
-  --logo-fill: red;
+  --logo-fill: #418fbf;
+  --switcherClr: #fff;
+  --bodyBG: #222;
 }
 
 body {
@@ -29,6 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--bodyBG);
 }
 
 header {
@@ -57,6 +62,10 @@ button {
 
 button > * {
   pointer-events: none;
+}
+
+.fa-adjust {
+  color: var(--switcherClr);
 }
 
 .fa-heart,
@@ -97,12 +106,6 @@ button > * {
   color: var(--color);
 }
 /* Set the size of the div element that contains the map */
-#map {
-  height: 400px;
-  /* The height is 400 pixels */
-  width: 100%;
-  /* The width is the width of the web page */
-}
 .gallery {
   width: 95%;
   display: grid;
@@ -183,9 +186,43 @@ button > * {
   opacity: 1;
 }
 
+.fav-container {
+  display: flex;
+  width: 95%;
+  justify-content: space-between;
+}
+
+.map,
+.favs-list {
+  width: 48%;
+}
+
 .map {
-  height: 400px;
+  height: 650px;
+  border-radius: 5px;
   /* The height is 400 pixels */
-  width: 100%;
+  /* width: 100%; */
   /* The width is the width of the web page */
+}
+
+.favs-post {
+  display: flex;
+  align-items: center;
+}
+
+.favs-details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+
+.favs-city {
+  font-size: 0.75rem;
+}
+
+.favs-img {
+  width: 64px;
+  height: 64px;
+  background-position: center;
+  background-size: cover;
 }
