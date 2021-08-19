@@ -49,6 +49,17 @@ svg {
   justify-content: space-between;
 }
 
+.right-header {
+  display: flex;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
 .home {
   display: flex;
   align-items: center;
