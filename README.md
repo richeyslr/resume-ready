@@ -2,31 +2,33 @@
 
 # Project Idea 1
 
-Our application displays a gallery of tasty homemade dishes. You can browse the gallery to view the dishes' information and add dishes you like to your favorites list. You can also manage the dishes on your favorites list. Favorites list will be stored locally to allow users to revisit their previously favorited dishes.
+Our application displays a gallery of skateboard parks. You can browse the gallery to view the park's name and location, watch a video of people skating there, and add it to your favorites list. You can also manage parks on your favorites list and view them on a google map. Favorites list will be stored locally to allow users to revisit their previously favorited parks.
 
 Pain points:
 
-- Convienience of choosing meals to prepare
+- Covinience of viewing and saving popular skate spots
 
-- Easy access recipes for interesting dishes
+- See how close or far away popular skate spots are from you on a google map
 
-- Ability to save interesting dishes
+- Watch clips of people skating before planning a trip to the spot
 
 # MVP
 
-- Minimun viable product will display gallery of homemade dishes to choose from. Hovering over a dish in the gallery will make the name appear as well as buttons to favorite the dish and view the recipe. Favorited dishes, along with other info, will be recorded on the favorites page and favorites will be persisted across all pages of the website in local storage.
+- Minimun viable product will display gallery of selected skateparks to view. Hovering over a skatepark in the gallery will make the name appear as well as buttons to favorite the dish and view a video. Favorited parks will be recorded on the favorites page and favorites will be persisted across all pages of the website in local storage.
 
 - Stretch goals:
 
 # Domain Model
 
-### Dishes
+### Parks
 
 - name
 
 - image source
 
 - is it favorited
+
+- location
 
 - way to render
 
