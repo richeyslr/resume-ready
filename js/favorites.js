@@ -74,10 +74,12 @@ function initMap() {
 function handleUnFavClick(evt) {
   evt.preventDefault();
   evt.stopPropagation();
+  console.log(evt.target);
   // same as other event handler but only for unfavoriting
   if (evt.target.id === "unfav") {
     // let currentIcon = evt.target.querySelector("i");
-    let currentPark = evt.target.parentElement;
+    let currentPark = evt.target.parentElement.parentElement;
+    console.log(currentPark);
     let currentParkName = currentPark.querySelector("#name").textContent;
     console.log(currentParkName);
     parkGallery.removeFavorite(currentParkName);
