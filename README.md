@@ -33,3 +33,11 @@ Pain points:
 - way to render
 
 - way to check if favorited
+
+### Gallery
+
+- way to randomly display 8 parks on the gallery page
+
+- way to favorite and unfavorite parks
+
+- way to save whether parks are fav and not fav parks for proper rendering on both pages
